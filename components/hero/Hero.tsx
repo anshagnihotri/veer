@@ -96,7 +96,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom Footer Section */}
-      <div className="relative z-10 w-full pb-10 md:pb-12 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center md:items-end hero-ui gap-8 md:gap-0">
+      <div className="relative z-10 w-full pb-10 md:pb-12 px-6 md:px-12 flex flex-col-reverse md:flex-row justify-between items-center md:items-end hero-ui gap-8 md:gap-0 mt-auto">
         
         {/* Bottom Left */}
         <div className="flex flex-col gap-6 w-full md:w-1/3 items-center md:items-start">

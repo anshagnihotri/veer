@@ -157,7 +157,7 @@ export default function SelectedFilms() {
                 />
 
                 <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform scale-90 group-hover:scale-100">
-                  <div className="w-16 h-16 md:w-24 md:h-24 rounded-full border border-white/30 backdrop-blur-md flex items-center justify-center text-white">
+                  <div className="w-16 h-16 md:w-24 md:h-24 rounded-full border border-white/30 bg-black/20 flex items-center justify-center text-white">
                     <Play size={24} className="ml-1" />
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export default function SelectedFilms() {
               />
               
               {/* Custom Controls Overlay */}
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 flex items-center gap-6 bg-black/50 backdrop-blur-md px-8 py-4 rounded-full border border-white/10">
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 flex items-center gap-6 bg-black/70 px-8 py-4 rounded-full border border-white/10">
                 <button onClick={togglePlay} className="text-white hover:text-soft-grey transition-colors">
                   {isPlaying ? <Pause size={24} /> : <Play size={24} className="ml-1" />}
                 </button>

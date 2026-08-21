@@ -98,7 +98,7 @@ export default function CinematicFilm() {
         </div>
 
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-ivory">
-          <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border border-white/30 backdrop-blur-md flex items-center justify-center transition-transform duration-500 group-hover:scale-125 group-hover:bg-white/10 mb-8">
+          <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border border-white/30 flex items-center justify-center transition-transform duration-500 group-hover:scale-125 bg-black/20 group-hover:bg-black/40 mb-8">
             <Play size={40} className="ml-2 opacity-80 group-hover:opacity-100 transition-opacity" />
           </div>
           
@@ -141,7 +141,7 @@ export default function CinematicFilm() {
               />
               
               {/* Custom Controls Overlay */}
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 flex items-center gap-6 bg-black/50 backdrop-blur-md px-8 py-4 rounded-full border border-white/10">
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 flex items-center gap-6 bg-black/70 px-8 py-4 rounded-full border border-white/10">
                 <button onClick={togglePlay} className="text-white hover:text-soft-grey transition-colors">
                   {isVideoPlaying ? <Pause size={24} /> : <Play size={24} className="ml-1" />}
                 </button>

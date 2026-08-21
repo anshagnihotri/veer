@@ -40,7 +40,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     }, 150);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [shouldShow, isMounted]);
 
   useGSAP(
     () => {

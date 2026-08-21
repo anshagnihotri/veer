@@ -116,7 +116,7 @@ export default function Navigation() {
               scrolled ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"
             )}
           >
-            VEER PHOTOFACTORY
+            VEER
           </Link>
 
           {/* Right: Enquire Button */}

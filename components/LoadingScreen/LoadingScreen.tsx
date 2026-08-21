@@ -14,9 +14,21 @@ interface LoadingScreenProps {
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const [shouldShow, setShouldShow] = useState<boolean>(true);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    if (sessionStorage.getItem("hasSeenLoader")) {
+      setShouldShow(false);
+      if (onComplete) onComplete();
+    }
+  }, [onComplete]);
 
   // Simulate loading progress
   useEffect(() => {
+    if (!shouldShow || !isMounted) return;
+
     let currentProgress = 0;
     const interval = setInterval(() => {
       currentProgress += Math.floor(Math.random() * 15) + 5;
@@ -32,11 +44,14 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
   useGSAP(
     () => {
+      if (!shouldShow || !isMounted) return;
+
       // Wait for progress to reach 100 before starting the main animation
       if (progress < 100) return;
 
       const tl = gsap.timeline({
         onComplete: () => {
+          sessionStorage.setItem("hasSeenLoader", "true");
           if (onComplete) onComplete();
         },
       });
@@ -91,6 +106,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       </span>
     ));
   };
+
+  if (!isMounted || !shouldShow) return null;
 
   return (
     <div

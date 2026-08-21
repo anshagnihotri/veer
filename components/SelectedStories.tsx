@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -370,11 +371,13 @@ export default function SelectedStories() {
                   }
                 }}
               >
-                <div className="h-full w-full overflow-hidden bg-[#EEE6D8] p-[1px] md:p-[2px]">
-                  <img 
+                <div className="h-full w-full overflow-hidden bg-[#EEE6D8] p-[1px] md:p-[2px] relative">
+                  <Image 
                     src={story.image} 
                     alt="Memory" 
-                    className="h-full w-full object-cover grayscale-[15%]"
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="object-cover grayscale-[15%]"
                     draggable={false}
                   />
                 </div>

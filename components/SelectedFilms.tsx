@@ -222,9 +222,11 @@ export default function SelectedFilms() {
 
             {/* Video Player */}
             <div className="relative w-full h-full max-h-screen">
-              <img
+              <Image
                 src={activeFilm.video}
-                className="w-full h-full object-contain"
+                fill
+                sizes="100vw"
+                className="object-contain"
                 alt={activeFilm.couple}
               />
               

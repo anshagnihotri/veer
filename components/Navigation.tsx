@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { Menu, X } from "lucide-react";
 import gsap from "gsap";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -115,14 +116,18 @@ export default function Navigation() {
       >
         {/* Background Media */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/images/_PR09941.webp"
-            className="menu-media w-full h-full object-cover hidden md:block"
+            fill
+            sizes="100vw"
+            className="menu-media object-cover hidden md:block"
             alt="Menu background video replacement"
           />
-          <img
+          <Image
             src="/images/DSC01369.webp"
-            className="menu-media w-full h-full object-cover md:hidden"
+            fill
+            sizes="100vw"
+            className="menu-media object-cover md:hidden"
             alt="Menu background"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/30" />

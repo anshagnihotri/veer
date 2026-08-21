@@ -89,9 +89,11 @@ export default function CinematicFilm() {
     <>
       <section ref={containerRef} className="relative w-full h-[80vh] md:h-[100dvh] overflow-hidden group cursor-pointer" onClick={openModal}>
         <div className="absolute inset-0 z-0 cinema-bg">
-          <img
+          <Image
             src="/images/_XYZ1112.webp"
-            className="w-full h-full object-cover opacity-80"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-80"
             alt="Cinematic background"
           />
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
@@ -134,9 +136,11 @@ export default function CinematicFilm() {
 
             {/* Video Player */}
             <div className="relative w-full h-full max-h-screen">
-              <img
+              <Image
                 src={activeVideo}
-                className="w-full h-full object-contain"
+                fill
+                sizes="100vw"
+                className="object-contain"
                 alt="Cinematic film"
               />
               

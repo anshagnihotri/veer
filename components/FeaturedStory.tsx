@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 import { Play, X, Pause, Volume2, VolumeX } from "lucide-react";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -121,9 +121,11 @@ export default function FeaturedStory() {
         >
           <div className="absolute inset-0 z-10 bg-black/20 transition-colors duration-500 group-hover:bg-black/40" />
           
-          <img
+          <Image
             src="/images/_XYZ1252.webp"
-            className="featured-img w-full h-full object-cover"
+            fill
+            sizes="100vw"
+            className="featured-img object-cover"
             alt="Featured story background"
           />
 
@@ -174,9 +176,11 @@ export default function FeaturedStory() {
 
             {/* Video Player */}
             <div className="relative w-full h-full max-h-screen">
-              <img
+              <Image
                 src={activeVideo}
-                className="w-full h-full object-contain"
+                fill
+                sizes="100vw"
+                className="object-contain"
                 alt="Featured story film"
               />
               

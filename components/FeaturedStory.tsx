@@ -125,6 +125,7 @@ export default function FeaturedStory() {
             src="/images/_XYZ1252.webp"
             fill
             sizes="100vw"
+            loading="lazy"
             className="featured-img object-cover"
             alt="Featured story background"
           />
@@ -180,6 +181,7 @@ export default function FeaturedStory() {
                 src={activeVideo}
                 fill
                 sizes="100vw"
+                loading="lazy"
                 className="object-contain"
                 alt="Featured story film"
               />

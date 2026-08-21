@@ -93,6 +93,7 @@ export default function CinematicFilm() {
             src="/images/_XYZ1112.webp"
             fill
             sizes="100vw"
+            loading="lazy"
             className="object-cover opacity-80"
             alt="Cinematic background"
           />
@@ -140,6 +141,7 @@ export default function CinematicFilm() {
                 src={activeVideo}
                 fill
                 sizes="100vw"
+                loading="lazy"
                 className="object-contain"
                 alt="Cinematic film"
               />

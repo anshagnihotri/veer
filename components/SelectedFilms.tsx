@@ -226,6 +226,7 @@ export default function SelectedFilms() {
                 src={activeFilm.video}
                 fill
                 sizes="100vw"
+                loading="lazy"
                 className="object-contain"
                 alt={activeFilm.couple}
               />

@@ -1,6 +1,5 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/hero/Hero";
-import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import Introduction from "@/components/Introduction";
 import FeaturedStory from "@/components/FeaturedStory";
 import SelectedFilms from "@/components/SelectedFilms";
@@ -18,7 +17,6 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <LoadingScreen />
       <Navigation />
       <main className="bg-black text-ivory">
         <Hero />

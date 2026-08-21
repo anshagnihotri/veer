@@ -6,14 +6,15 @@ import { Menu, X } from "lucide-react";
 import gsap from "gsap";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Stories", href: "#stories" },
-  { name: "Films", href: "#films" },
-  { name: "Philosophy", href: "#philosophy" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/#home" },
+  { name: "Stories", href: "/#stories" },
+  { name: "Films", href: "/#films" },
+  { name: "Philosophy", href: "/#philosophy" },
+  { name: "About", href: "/#about" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navigation() {
@@ -108,19 +109,19 @@ export default function Navigation() {
           </button>
 
           {/* Center: Logo */}
-          <a
-            href="#home"
+          <Link
+            href="/#home"
             className={clsx(
               "absolute left-1/2 -translate-x-1/2 font-serif tracking-widest text-center hover:opacity-70 transition-all duration-500",
               scrolled ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"
             )}
           >
             VEER PHOTOFACTORY
-          </a>
+          </Link>
 
           {/* Right: Enquire Button */}
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className={clsx(
               "uppercase tracking-[0.2em] font-sans font-medium transition-all duration-300 text-center",
               scrolled
@@ -129,7 +130,7 @@ export default function Navigation() {
             )}
           >
             Enquire
-          </a>
+          </Link>
         </div>
       </header>
 
@@ -170,7 +171,7 @@ export default function Navigation() {
           <ul className="flex flex-col gap-4 md:gap-6 mt-12 md:mt-0" style={{ perspective: "1000px" }}>
             {navLinks.map((link, index) => (
               <li key={link.name} className="overflow-hidden group/item">
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="menu-link flex items-baseline gap-4 md:gap-8 text-4xl md:text-5xl lg:text-6xl font-serif text-white/80 hover:text-white transition-all duration-500 origin-left hover:translate-x-6"
@@ -181,7 +182,7 @@ export default function Navigation() {
                   <span className="group-hover/item:italic">
                     {link.name}
                   </span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

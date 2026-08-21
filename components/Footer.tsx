@@ -40,13 +40,13 @@ export default function Footer() {
         <p className="gsap-reveal-up text-[10px] md:text-xs uppercase tracking-[0.3em] font-sans font-medium text-white/50 mb-6">
           Ready to create something beautiful?
         </p>
-        <a href="#contact" className="gsap-reveal-up font-serif text-6xl md:text-8xl lg:text-9xl mb-12 hover:italic transition-all duration-500 text-white hover:text-white/90">
+        <Link href="/#contact" className="gsap-reveal-up font-serif text-6xl md:text-8xl lg:text-9xl mb-12 hover:italic transition-all duration-500 text-white hover:text-white/90">
           LET&apos;S TALK
-        </a>
-        <a href="#contact" className="gsap-reveal-up group relative inline-flex items-center gap-4 text-xs uppercase tracking-[0.2em] font-sans font-medium text-white/80 hover:text-white transition-colors">
+        </Link>
+        <Link href="/#contact" className="gsap-reveal-up group relative inline-flex items-center gap-4 text-xs uppercase tracking-[0.2em] font-sans font-medium text-white/80 hover:text-white transition-colors">
           <span className="w-8 h-[1px] bg-white transition-all duration-300 group-hover:w-12"></span>
           Start a conversation
-        </a>
+        </Link>
       </div>
 
       {/* Grid Links and Info */}

@@ -62,7 +62,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
       // --- PHASE 2: TYPOGRAPHY & MICRO-TEXT REVEAL (1.0s - 2.0s) ---
       tl.to(".brand-text span", { yPercent: 0, opacity: 1, duration: 1, stagger: 0.05, ease: "expo.out" }, 1.0);
-      tl.to(".line-reveal span", { scaleX: 1, duration: 1, ease: "expo.out" }, 1.4);
+      tl.to(".line-reveal span", { scaleX: 1, opacity: 1, duration: 1, ease: "expo.out" }, 1.4);
       tl.to(".micro-text", { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" }, 1.4);
 
       // --- PHASE 3: HOLD AND ENJOY THE VIEW (2.0s - 3.0s) ---
@@ -86,7 +86,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
   const splitText = (text: string) => {
     return text.split("").map((char, i) => (
-      <span key={i} className="inline-block relative">
+      <span key={i} className="inline-block relative opacity-0">
         {char === " " ? "\u00A0" : char}
       </span>
     ));
@@ -141,19 +141,19 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               {splitText("SINGH")}
             </h1>
              <div className="line-reveal ml-2 md:ml-4 h-[2px] w-[12vw] md:w-[15vw] mt-[2vw] md:mt-[1vw]">
-                <span className="block w-full h-full bg-ivory shadow-[0_0_10px_rgba(255,255,255,0.5)]"></span>
+                <span className="block w-full h-full bg-ivory shadow-[0_0_10px_rgba(255,255,255,0.5)] opacity-0"></span>
              </div>
           </div>
         </div>
 
         {/* Micro details */}
-        <div className="micro-text font-sans absolute top-8 left-8 md:top-12 md:left-12 text-[0.6rem] md:text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/70">
+        <div className="micro-text opacity-0 font-sans absolute top-8 left-8 md:top-12 md:left-12 text-[0.6rem] md:text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/70">
           Gorakhpur, IN
         </div>
-        <div className="micro-text font-sans absolute top-8 right-8 md:top-12 md:right-12 text-[0.6rem] md:text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/70 text-right">
+        <div className="micro-text opacity-0 font-sans absolute top-8 right-8 md:top-12 md:right-12 text-[0.6rem] md:text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/70 text-right">
           Est. 2024
         </div>
-        <div className="micro-text font-sans absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 text-center normal-case text-[0.65rem] md:text-[0.7rem] leading-relaxed text-white/80 w-max max-w-[90vw]">
+        <div className="micro-text opacity-0 font-sans absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 text-center normal-case text-[0.65rem] md:text-[0.7rem] leading-relaxed text-white/80 w-max max-w-[90vw]">
           High-end cinematic wedding photography
           <br className="hidden md:block" />
           <span className="md:hidden"> </span>& archival storytelling.

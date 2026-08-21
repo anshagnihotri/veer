@@ -1,3 +1,4 @@
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/hero/Hero";
 import Introduction from "@/components/Introduction";
@@ -17,6 +18,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <LoadingScreen />
       <Navigation />
       <main className="bg-black text-ivory">
         <Hero />

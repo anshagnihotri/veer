@@ -74,37 +74,62 @@ export default function Navigation() {
       {/* Sticky Top Glassmorphic Header */}
       <header
         className={clsx(
-          "fixed top-0 left-0 w-full z-40 transition-all duration-500 flex justify-center",
-          isHeroVisible ? "opacity-0 -translate-y-full pointer-events-none pt-0" : "opacity-100 translate-y-0 pt-4 md:pt-6"
+          "fixed top-0 left-0 w-full z-40 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex justify-center",
+          isHeroVisible 
+            ? "max-md:translate-y-0 max-md:pt-4 md:-translate-y-full pt-0" 
+            : "translate-y-0 pt-4 md:pt-6"
         )}
       >
         <div 
           className={clsx(
-            "flex items-center justify-between transition-all duration-500",
+            "relative flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
             scrolled 
-              ? "w-[95%] md:w-[80%] lg:w-[60%] bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
-              : "w-full p-6 md:p-10 bg-transparent border-transparent rounded-none"
+              ? "w-[92%] md:w-[75%] lg:w-[55%] max-w-3xl bg-[#0a0a0a]/95 backdrop-blur-md border border-white/10 rounded-full px-2 py-2 shadow-2xl"
+              : "w-full px-6 py-8 md:px-12 md:py-10 bg-transparent border-transparent rounded-none"
           )}
         >
+          {/* Left: Menu Button */}
           <button
             onClick={() => setIsOpen(true)}
-            className="text-xs uppercase tracking-widest hover:text-soft-grey transition-colors flex items-center gap-2 font-sans w-24"
+            className={clsx(
+              "group flex items-center justify-center rounded-full transition-all duration-300",
+              scrolled 
+                ? "gap-3 bg-white/5 hover:bg-white/10 border border-white/5 px-4 md:px-5 py-3 md:py-2.5" 
+                : "gap-3 hover:opacity-70"
+            )}
           >
-            <Menu size={16} /> <span className={clsx("transition-opacity", scrolled ? "hidden md:inline" : "inline")}>Menu</span>
+            <div className="flex flex-col gap-[4px] w-[18px] justify-center items-center">
+              <span className="w-full h-[1px] bg-white group-hover:w-2 transition-all duration-300"></span>
+              <span className="w-full h-[1px] bg-white transition-all duration-300"></span>
+            </div>
+            <span className={clsx("text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-sans font-medium", scrolled ? "hidden sm:block" : "block")}>
+              Menu
+            </span>
           </button>
 
-          <a href="#home" className="text-xl md:text-2xl font-serif tracking-wide text-center hover:scale-105 transition-transform flex-grow mx-4">
-            Veer Photofactory
+          {/* Center: Logo */}
+          <a 
+            href="#home" 
+            className={clsx(
+              "absolute left-1/2 -translate-x-1/2 font-serif tracking-widest text-center hover:opacity-70 transition-all duration-500",
+              scrolled ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"
+            )}
+          >
+            VEER
           </a>
 
-          <div className="w-24 text-right">
-            <a
-              href="#contact"
-              className={clsx("text-xs uppercase tracking-widest hover:text-soft-grey transition-colors font-sans", scrolled ? "hidden md:inline" : "inline")}
-            >
-              Enquire
-            </a>
-          </div>
+          {/* Right: Enquire Button */}
+          <a
+            href="#contact"
+            className={clsx(
+              "uppercase tracking-[0.2em] font-sans font-medium transition-all duration-300 text-center",
+              scrolled 
+                ? "text-[10px] md:text-[11px] bg-ivory text-black hover:bg-white px-5 md:px-7 py-3 md:py-2.5 rounded-full shadow-[0_0_15px_rgba(255,255,240,0.1)] hover:shadow-[0_0_25px_rgba(255,255,240,0.3)] hover:scale-105" 
+                : "text-[10px] md:text-[12px] hover:text-soft-grey"
+            )}
+          >
+            Enquire
+          </a>
         </div>
       </header>
 

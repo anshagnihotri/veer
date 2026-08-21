@@ -52,13 +52,13 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/10" />
       </div>
 
-      {/* Top Header Section */}
-      <div className="relative z-10 w-full pt-8 md:pt-12 px-6 md:px-12 hero-ui">
+      {/* Top Header Section (Desktop Only) */}
+      <div className="relative z-10 w-full pt-8 md:pt-12 px-6 md:px-12 hero-ui hidden md:block">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end pb-6 border-b border-white/20">
-          <h1 className="text-3xl md:text-[2.5rem] font-serif text-white tracking-wide">
+          <h1 className="text-[2.5rem] font-serif text-white tracking-wide">
             VEER PHOTOFACTORY
           </h1>
-          <nav className="hidden md:flex gap-8 text-[10px] uppercase tracking-widest font-sans text-white/90 pb-2">
+          <nav className="flex gap-8 text-[10px] uppercase tracking-widest font-sans text-white/90 pb-2">
             <Link href="#about" className="hover:text-white transition-colors">ABOUT</Link>
             <Link href="/work" className="hover:text-white transition-colors">WORK</Link>
             <Link href="#philosophy" className="hover:text-white transition-colors">SERVICES</Link>
@@ -66,7 +66,7 @@ export default function Hero() {
           </nav>
         </div>
         
-        <div className="mt-12 max-w-[200px] hero-ui hidden md:block">
+        <div className="mt-12 max-w-[200px] hero-ui">
           <p className="text-[9px] uppercase tracking-widest font-sans leading-loose text-white/80">
             WE DOCUMENT THE QUIET,<br />
             UNEXPECTED AND<br />
@@ -74,6 +74,16 @@ export default function Hero() {
             OF YOUR WEDDING DAY.
           </p>
         </div>
+      </div>
+
+      {/* Mobile Center Typography (Mobile Only) */}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center md:hidden pointer-events-none hero-ui">
+        <h1 className="text-[17vw] font-serif leading-[0.85] text-center text-ivory tracking-tighter drop-shadow-2xl">
+          VEER <br/>
+          <span className="italic pr-4 text-white/90">PHOTO</span>
+          <br/>
+          <span className="text-[14vw]">FACTORY</span>
+        </h1>
       </div>
 
       {/* Floating Explore Badge */}
@@ -86,23 +96,23 @@ export default function Hero() {
       </div>
 
       {/* Bottom Footer Section */}
-      <div className="relative z-10 w-full pb-8 md:pb-12 px-6 md:px-12 flex justify-between items-end hero-ui">
+      <div className="relative z-10 w-full pb-10 md:pb-12 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center md:items-end hero-ui gap-8 md:gap-0">
         
         {/* Bottom Left */}
-        <div className="flex flex-col gap-6 w-full md:w-1/3">
-          <div className="flex items-center gap-4 text-[9px] uppercase tracking-widest font-sans text-white/90">
-            <div className="w-8 h-[1px] bg-white/40" />
+        <div className="flex flex-col gap-6 w-full md:w-1/3 items-center md:items-start">
+          <div className="flex items-center gap-4 text-[9px] md:text-[10px] uppercase tracking-[0.15em] font-sans text-white/90 text-center md:text-left">
+            <div className="hidden md:block w-8 h-[1px] bg-white/40" />
             WEDDING PHOTOGRAPHY + FILMS
           </div>
-          <Link href="#contact" className="text-[10px] uppercase tracking-widest font-sans text-white border border-white/30 px-8 py-3 w-fit hover:bg-white hover:text-black transition-colors">
+          <Link href="#contact" className="hidden md:block text-[10px] uppercase tracking-widest font-sans text-white border border-white/30 px-8 py-3 w-fit hover:bg-white hover:text-black transition-colors">
             INQUIRE
           </Link>
         </div>
 
         {/* Bottom Center - SCROLL */}
-        <div className="hidden md:flex flex-col items-center gap-4 absolute left-1/2 bottom-12 -translate-x-1/2">
+        <div className="flex flex-col items-center gap-4 md:absolute md:left-1/2 md:bottom-12 md:-translate-x-1/2">
           <span className="text-[9px] uppercase tracking-[0.2em] font-sans text-white/60">SCROLL</span>
-          <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden" />
+          <div className="w-[1px] h-10 md:h-12 bg-white/20 relative overflow-hidden" />
         </div>
 
         {/* Bottom Right */}

@@ -15,78 +15,54 @@ export default function CustomCursor() {
 
     const cursor = cursorRef.current;
     const follower = followerRef.current;
-    
-    let mouseX = 0;
-    let mouseY = 0;
-    let followerX = 0;
-    let followerY = 0;
+    if (!cursor || !follower) return;
 
-    // Fast animation loop for smooth following
-    const ticker = gsap.ticker.add(() => {
-      followerX += (mouseX - followerX) * 0.15;
-      followerY += (mouseY - followerY) * 0.15;
-
-      gsap.set(follower, {
-        x: followerX - 16,
-        y: followerY - 16,
-      });
-
-      gsap.set(cursor, {
-        x: mouseX - 4,
-        y: mouseY - 4,
-      });
-    });
+    // Use gsap.quickTo for highly optimized, high-frequency updates without a ticker loop
+    const cursorX = gsap.quickTo(cursor, "x", { duration: 0.1, ease: "power3" });
+    const cursorY = gsap.quickTo(cursor, "y", { duration: 0.1, ease: "power3" });
+    const followerX = gsap.quickTo(follower, "x", { duration: 0.5, ease: "power3" });
+    const followerY = gsap.quickTo(follower, "y", { duration: 0.5, ease: "power3" });
 
     const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      cursorX(e.clientX - 4);
+      cursorY(e.clientY - 4);
+      followerX(e.clientX - 16);
+      followerY(e.clientY - 16);
     };
 
-    const onMouseEnterLink = () => {
-      gsap.to(cursor, { scale: 0, opacity: 0, duration: 0.3 });
-      gsap.to(follower, { scale: 2, backgroundColor: "rgba(255, 255, 255, 0.1)", duration: 0.3 });
-    };
-    
-    const onMouseLeaveLink = () => {
-      gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
-      gsap.to(follower, { scale: 1, backgroundColor: "transparent", duration: 0.3 });
-    };
-
-    const attachListeners = () => {
-      const clickables = document.querySelectorAll("a, button, input, textarea, .cursor-pointer, .film-card");
-      clickables.forEach((el) => {
-        el.addEventListener("mouseenter", onMouseEnterLink);
-        el.addEventListener("mouseleave", onMouseLeaveLink);
-      });
-      return clickables;
+    // Event delegation for interactable elements instead of querying the DOM continuously
+    const isInteractable = (el: Element | null): boolean => {
+      if (!el) return false;
+      const tag = el.tagName.toLowerCase();
+      if (['a', 'button', 'input', 'textarea'].includes(tag)) return true;
+      if (el.classList && (el.classList.contains('cursor-pointer') || el.classList.contains('film-card'))) return true;
+      return isInteractable(el.parentElement);
     };
 
-    window.addEventListener("mousemove", onMouseMove);
-    
-    // Initial attach
-    let clickables = attachListeners();
+    const onMouseOver = (e: MouseEvent) => {
+      if (isInteractable(e.target as Element)) {
+        gsap.to(cursor, { scale: 0, opacity: 0, duration: 0.3 });
+        gsap.to(follower, { scale: 2, backgroundColor: "rgba(255, 255, 255, 0.1)", duration: 0.3 });
+      }
+    };
 
-    // Re-attach listeners when DOM updates (MutationObserver)
-    const observer = new MutationObserver(() => {
-      clickables.forEach((el) => {
-        el.removeEventListener("mouseenter", onMouseEnterLink);
-        el.removeEventListener("mouseleave", onMouseLeaveLink);
-      });
-      clickables = attachListeners();
-    });
+    const onMouseOut = (e: MouseEvent) => {
+      if (isInteractable(e.target as Element)) {
+        gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
+        gsap.to(follower, { scale: 1, backgroundColor: "transparent", duration: 0.3 });
+      }
+    };
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.addEventListener("mouseover", onMouseOver, { passive: true });
+    document.addEventListener("mouseout", onMouseOut, { passive: true });
 
     return () => {
-      gsap.ticker.remove(ticker);
       window.removeEventListener("mousemove", onMouseMove);
-      observer.disconnect();
-      clickables.forEach((el) => {
-        el.removeEventListener("mouseenter", onMouseEnterLink);
-        el.removeEventListener("mouseleave", onMouseLeaveLink);
-      });
+      document.removeEventListener("mouseover", onMouseOver);
+      document.removeEventListener("mouseout", onMouseOut);
     };
-  }, [pathname]); // Re-run effect on route change
+  }, [pathname]); // Re-run effect on route change to reset states if needed
 
   return (
     <>

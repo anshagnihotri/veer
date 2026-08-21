@@ -1,10 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Testimonial } from "@/types";
+
+gsap.registerPlugin(useGSAP);
 
 const testimonials: Testimonial[] = [
   {
@@ -26,8 +29,10 @@ const testimonials: Testimonial[] = [
 export default function Stories() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { contextSafe } = useGSAP({ scope: containerRef });
 
-  const nextTestimonial = () => {
+  const nextTestimonial = contextSafe(() => {
     gsap.to(".testimonial-content", {
       opacity: 0,
       y: 20,
@@ -37,9 +42,9 @@ export default function Stories() {
         gsap.to(".testimonial-content", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
       },
     });
-  };
+  });
 
-  const prevTestimonial = () => {
+  const prevTestimonial = contextSafe(() => {
     gsap.to(".testimonial-content", {
       opacity: 0,
       y: -20,
@@ -49,7 +54,7 @@ export default function Stories() {
         gsap.to(".testimonial-content", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
       },
     });
-  };
+  });
 
   return (
     <section ref={containerRef} className="py-16 md:py-20 bg-ivory text-black overflow-hidden">

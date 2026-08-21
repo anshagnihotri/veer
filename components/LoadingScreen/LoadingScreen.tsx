@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
@@ -11,19 +11,30 @@ interface LoadingScreenProps {
   onComplete?: () => void;
 }
 
-const cycleImages = [
-  "/images/2.webp", 
-  "/images/333.webp", 
-  "/images/DSC01369.webp", 
-  "/images/DSC02282.webp", 
-  "/images/DSC02880.webp", 
-];
-
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  // Simulate loading progress
+  useEffect(() => {
+    let currentProgress = 0;
+    const interval = setInterval(() => {
+      currentProgress += Math.floor(Math.random() * 15) + 5;
+      if (currentProgress >= 100) {
+        currentProgress = 100;
+        clearInterval(interval);
+      }
+      setProgress(currentProgress);
+    }, 150);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useGSAP(
     () => {
+      // Wait for progress to reach 100 before starting the main animation
+      if (progress < 100) return;
+
       const tl = gsap.timeline({
         onComplete: () => {
           if (onComplete) onComplete();
@@ -31,101 +42,123 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       });
 
       // --- INITIAL STATE SETUP ---
-      gsap.set(".center-item", { xPercent: -50, yPercent: -50 });
-      // Added opacity: 0 to the text for a softer reveal later
-      gsap.set(".typo-word", { yPercent: 100, opacity: 0 }); 
-      gsap.set(".oxblood-rect", { scaleX: 0 });
+      gsap.set(".loader-image-container", { scale: 1.2, opacity: 0, filter: "blur(10px)" });
+      gsap.set(".progress-container", { opacity: 1 });
+      gsap.set(".brand-text span", { yPercent: 100, opacity: 0 });
+      gsap.set(".micro-text", { opacity: 0, y: 10 });
+      gsap.set(".panel-top", { top: 0 });
+      gsap.set(".panel-bottom", { bottom: 0 });
+      gsap.set(".loader-overlay", { background: "transparent" });
+      gsap.set(".line-reveal span", { scaleX: 0, transformOrigin: "left center" });
+
+      // --- PHASE 1: FADE OUT PROGRESS & REVEAL IMAGE (0.0s - 1.2s) ---
+      tl.to(".progress-container", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 0.2);
       
-      // --- PHASE 1: CONTENT FADE IN (0.0s - 0.4s) ---
-      tl.fromTo(
-        ".loader-content",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: "power2.out" },
-        0
-      );
-
-      // --- PHASE 2: RAPID IMAGE CYCLING (0.4s - 0.8s) ---
-      const cycleTimes = [0.4, 0.5, 0.6, 0.7]; 
-      for (let i = 1; i < cycleImages.length; i++) {
-        tl.set(`#cycle-${i}`, { opacity: 1 }, cycleTimes[i - 1]);
-      }
-
-      // --- PHASE 3: SCALE UP & VANISH MOMENT (1.0s - 1.6s) ---
       tl.to(
-        ".center-item",
-        { scale: 1, duration: 0.6, ease: "expo.inOut" },
-        1.0 
-      );
-      tl.to(
-        [".center-item", ".micro-text"],
-        { opacity: 0, scale: 0.9, duration: 0.4, ease: "power2.inOut", stagger: 0.04 },
-        1.4
+        ".loader-image-container",
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.5, ease: "expo.out" },
+        0.5
       );
 
-      // --- PHASE 4: TYPOGRAPHY REVEAL & ACCENT RECT (1.2s - 2.0s) ---
-      tl.to(".typo-word", { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "expo.out" }, 1.2);
-      tl.to(".oxblood-rect", { scaleX: 1, duration: 0.6, ease: "expo.out" }, 1.4);
+      // --- PHASE 2: TYPOGRAPHY & MICRO-TEXT REVEAL (1.0s - 2.0s) ---
+      tl.to(".brand-text span", { yPercent: 0, opacity: 1, duration: 1, stagger: 0.05, ease: "expo.out" }, 1.0);
+      tl.to(".line-reveal span", { scaleX: 1, duration: 1, ease: "expo.out" }, 1.4);
+      tl.to(".micro-text", { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" }, 1.4);
 
-      // --- PHASE 5: FINAL TRANSITION / VANISH (2.2s+) ---
-      tl.to(containerRef.current, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, 2.2)
-        .set(containerRef.current, { display: "none" }); 
+      // --- PHASE 3: HOLD AND ENJOY THE VIEW (2.0s - 3.0s) ---
+      // The image continues a very slow, subtle zoom
+      tl.to(".loader-image-container", { scale: 1.05, duration: 4, ease: "linear" }, 1.5);
+
+      // --- PHASE 4: THE GRAND REVEAL (3.0s - 4.2s) ---
+      tl.to(".brand-text span", { yPercent: -100, opacity: 0, duration: 0.6, stagger: 0.02, ease: "power2.in" }, 2.8);
+      tl.to(".line-reveal span", { scaleX: 0, transformOrigin: "right center", duration: 0.6, ease: "power2.in" }, 2.8);
+      tl.to(".micro-text", { opacity: 0, y: -10, duration: 0.4, ease: "power2.in" }, 3.0);
+      tl.to(".loader-image-container", { opacity: 0, scale: 1.1, duration: 0.8, ease: "power2.inOut" }, 3.1);
+
+      // Panel split effect
+      tl.to(".panel-top", { height: 0, duration: 1.2, ease: "expo.inOut" }, 3.4);
+      tl.to(".panel-bottom", { height: 0, duration: 1.2, ease: "expo.inOut" }, 3.4);
+      
+      tl.set(containerRef.current, { display: "none" }, 4.6);
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [progress] }
   );
+
+  const splitText = (text: string) => {
+    return text.split("").map((char, i) => (
+      <span key={i} className="inline-block relative">
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ));
+  };
 
   return (
     <div
       ref={containerRef}
-      className="loader-overlay fixed inset-0 w-screen h-[100dvh] bg-black z-[9999] overflow-hidden flex justify-center items-center text-ivory"
+      className="loader-overlay fixed inset-0 w-screen h-[100dvh] z-[9999] overflow-hidden flex justify-center items-center pointer-events-none"
     >
-      <div className="absolute inset-0 bg-grain-dark z-0"></div>
+      {/* Background Panels for the final split reveal */}
+      <div className="panel-top absolute top-0 left-0 w-full h-1/2 bg-[#0a0a0a] z-0"></div>
+      <div className="panel-bottom absolute bottom-0 left-0 w-full h-1/2 bg-[#0a0a0a] z-0"></div>
 
-      <div className="loader-content opacity-0 w-full h-full relative z-10">
-        {/* --- SMALL EDITORIAL DETAILS --- */}
-        <div className="micro-text font-sans absolute text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/50 left-[4vw] top-1/2 -translate-y-1/2">
-           Veer Singh
-        </div>
-        <div className="micro-text font-sans absolute text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/50 right-[4vw] top-1/2 -translate-y-1/2">
-          GORAKHPUR, INDIA
-        </div>
-        <div className="micro-text font-sans absolute bottom-[4vh] left-1/2 -translate-x-1/2 text-center normal-case text-[0.7rem] leading-relaxed text-white/70 w-max max-w-[90vw]">
-          High-end cinematic wedding photography & archival storytelling
-          <br />
-          serving global clients with old-world Indian warmth.
-        </div>
+      <div className="absolute inset-0 bg-grain-dark z-10 opacity-30 mix-blend-overlay"></div>
 
-        {/* --- IMAGE SEQUENCE --- */}
-        <div className="absolute inset-0">
-          <div className="center-item scale-[0.50] absolute top-1/2 left-1/2 w-[22vmin] h-[22vmin] bg-[#111] z-10" id="center-item">
-            {cycleImages.map((src, i) => (
-              <Image
-                key={i}
-                src={src}
+      {/* Progress Counter */}
+      <div className="progress-container absolute z-50 flex flex-col items-center justify-center">
+        <div className="font-sans text-xs tracking-[0.2em] uppercase text-white/40 mb-3">Initializing</div>
+        <div className="font-serif text-5xl md:text-7xl font-light text-ivory tracking-tighter">
+          {progress}<span className="text-2xl text-white/50 ml-1">%</span>
+        </div>
+      </div>
+
+      {/* Main Content (Revealed after loading) */}
+      <div className="w-full h-full relative z-20 flex flex-col items-center justify-center">
+        
+        {/* Cinematic Image container */}
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+           <div className="loader-image-container w-[75vw] md:w-[45vw] h-[55vh] md:h-[65vh] relative opacity-0 shadow-2xl">
+             <Image
+                src="/images/2.webp"
                 fill
                 priority
-                sizes="25vw"
-                className={`cycle-image object-cover ${i === 0 ? "opacity-100" : "opacity-0"}`}
-                id={`cycle-${i}`}
-                alt=""
+                sizes="(max-width: 768px) 75vw, 45vw"
+                className="object-cover object-center grayscale-[20%]"
+                alt="Cinematic frame"
               />
-            ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+           </div>
+        </div>
+
+        {/* Typography */}
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center w-full pointer-events-none">
+          <div className="overflow-hidden mb-[-1vh] md:mb-[-2vh]">
+            <h1 className="brand-text font-serif text-[16vw] md:text-[10vw] leading-[0.8] tracking-tighter uppercase text-ivory drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              {splitText("VEER")}
+            </h1>
+          </div>
+          <div className="overflow-hidden flex items-center mt-2 md:mt-0">
+            <h1 className="brand-text font-serif text-[16vw] md:text-[10vw] leading-[0.8] tracking-tighter uppercase text-ivory italic pr-4 drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              {splitText("SINGH")}
+            </h1>
+             <div className="line-reveal ml-2 md:ml-4 h-[2px] w-[12vw] md:w-[15vw] mt-[2vw] md:mt-[1vw]">
+                <span className="block w-full h-full bg-ivory shadow-[0_0_10px_rgba(255,255,255,0.5)]"></span>
+             </div>
           </div>
         </div>
 
-        {/* --- TYPOGRAPHY REVEAL --- */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center z-20">
-          <div className="overflow-hidden flex items-center justify-center -my-[1vh]">
-            <div className="typo-word font-serif text-[11vw] font-normal leading-none tracking-tight uppercase text-ivory">
-              MOMENTS,
-            </div>
-          </div>
-          <div className="overflow-hidden flex items-center justify-center -my-[1vh]">
-            <div className="typo-word font-serif text-[11vw] font-normal leading-none tracking-tight uppercase text-ivory">
-              PRESERVED
-            </div>
-            <div className="oxblood-rect w-[1.5em] h-[0.76em] bg-white ml-[0.25em] origin-left" />
-          </div>
+        {/* Micro details */}
+        <div className="micro-text font-sans absolute top-8 left-8 md:top-12 md:left-12 text-[0.6rem] md:text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/70">
+          Gorakhpur, IN
         </div>
+        <div className="micro-text font-sans absolute top-8 right-8 md:top-12 md:right-12 text-[0.6rem] md:text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/70 text-right">
+          Est. 2024
+        </div>
+        <div className="micro-text font-sans absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 text-center normal-case text-[0.65rem] md:text-[0.7rem] leading-relaxed text-white/80 w-max max-w-[90vw]">
+          High-end cinematic wedding photography
+          <br className="hidden md:block" />
+          <span className="md:hidden"> </span>& archival storytelling.
+        </div>
+
       </div>
     </div>
   );

@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography Map */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-cormorant);
+
+  /* Color Map */
+  --color-black: #0A0A0A;
+  --color-ivory: #F4F1EB;
+  --color-accent: #B83A3A;
+  --color-soft-grey: #8C8277;
+}
+
+/* Base resets for lenis and full height */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* 
+  Subtle Textures (Optional usage for cinematic sections) 
+*/
+.bg-grain-dark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  opacity: 0.02;
+}
+
+img, video {
+  user-select: none;
+  -webkit-user-drag: none;
+}

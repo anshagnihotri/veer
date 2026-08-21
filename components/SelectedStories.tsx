@@ -9,12 +9,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Base unique stories
 const uniqueStories = [
-  { id: '01', couple: 'Ananya & Arjun', location: 'Udaipur, India', year: '2026', type: 'Wedding Film + Photography', image: '/images/Anjali.jpg.jpg' },
-  { id: '02', couple: 'Priya & Rahul', location: 'Lake Como, Italy', year: '2026', type: 'Editorial Portraits', image: '/images/DSC01369.jpg' },
-  { id: '03', couple: 'Sneha & Vikram', location: 'Jaipur, India', year: '2027', type: 'Archival Documentary', image: '/images/DSC02282.jpg' },
-  { id: '04', couple: 'Meera & Aditya', location: 'Goa, India', year: '2025', type: 'Destination Celebration', image: '/images/DSC02880.jpg' },
-  { id: '05', couple: 'Ishita & Rohan', location: 'Tuscany, Italy', year: '2026', type: 'Intimate Elopement', image: '/images/DSC_0361.jpg' },
-  { id: '06', couple: 'Tara & Kabir', location: 'Bali, Indonesia', year: '2027', type: 'Wedding Film + Photography', image: '/images/VeerSingh.jpg' },
+  { id: '01', couple: 'Ananya & Arjun', location: 'Udaipur, India', year: '2026', type: 'Wedding Film + Photography', image: '/images/Anjali.webp' },
+  { id: '02', couple: 'Priya & Rahul', location: 'Lake Como, Italy', year: '2026', type: 'Editorial Portraits', image: '/images/DSC01369.webp' },
+  { id: '03', couple: 'Sneha & Vikram', location: 'Jaipur, India', year: '2027', type: 'Archival Documentary', image: '/images/DSC02282.webp' },
+  { id: '04', couple: 'Meera & Aditya', location: 'Goa, India', year: '2025', type: 'Destination Celebration', image: '/images/DSC02880.webp' },
+  { id: '05', couple: 'Ishita & Rohan', location: 'Tuscany, Italy', year: '2026', type: 'Intimate Elopement', image: '/images/DSC_0361.webp' },
+  { id: '06', couple: 'Tara & Kabir', location: 'Bali, Indonesia', year: '2027', type: 'Wedding Film + Photography', image: '/images/VeerSingh.webp' },
 ];
 
 export default function SelectedStories() {

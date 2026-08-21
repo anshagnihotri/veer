@@ -8,12 +8,12 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const images = [
-  "/images/054A3733.jpg",
-  "/images/_XYZ1112.jpg",
-  "/images/054A4027.jpg",
-  "/images/VeerSingh.jpg",
-  "/images/DSC_0361.jpg",
-  "/images/DSC01369.jpg",
+  "/images/054A3733.webp",
+  "/images/_XYZ1112.webp",
+  "/images/054A4027.webp",
+  "/images/VeerSingh.webp",
+  "/images/DSC_0361.webp",
+  "/images/DSC01369.webp",
 ];
 
 export default function Marquee() {

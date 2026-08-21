@@ -14,9 +14,9 @@ interface MediaItem {
 }
 
 const previewMedia: MediaItem[] = [
-  { id: "1", type: "image", src: "/images/054A3733.jpg", alt: "Wedding shot 1" },
-  { id: "v1", type: "video", src: "/videos/00%20Reel.MP4", alt: "Wedding film snippet 1" },
-  { id: "2", type: "image", src: "/images/111.jpg", alt: "Wedding shot 2" },
+  { id: "1", type: "image", src: "/images/054A3733.webp", alt: "Wedding shot 1" },
+  { id: "v1", type: "image", src: "/images/DSC_0361.webp", alt: "Wedding shot snippet 1" },
+  { id: "2", type: "image", src: "/images/111_converted.webp", alt: "Wedding shot 2" },
 ];
 
 export default function PortfolioPreview() {

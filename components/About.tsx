@@ -76,7 +76,7 @@ export default function About() {
         <div className="md:col-span-5 w-full">
           <div className="gsap-about-img-wrapper relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden">
             <img
-              src="/images/VeerSingh.jpg" 
+              src="/images/VeerSingh.webp" 
               alt="The Veer Photofactory Studio Approach"
               className="gsap-about-img w-full h-full object-cover object-center grayscale-[15%]"
             />

@@ -94,7 +94,7 @@ export default function AboutVeer() {
         <div className="w-full md:w-[40%] lg:w-[35%] relative z-10 about-img-wrapper mb-16 md:mb-0 md:mt-16 lg:mt-24">
           <div className="relative aspect-[4/5] w-full max-w-sm mx-auto overflow-hidden bg-[#111]">
             <Image
-              src="/images/VeerSingh.jpg"
+              src="/images/VeerSingh.webp"
               alt="Veer Portrait"
               fill
               sizes="(max-width: 768px) 100vw, 40vw"

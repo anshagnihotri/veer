@@ -12,25 +12,25 @@ const services = [
     id: '01',
     title: 'Wedding Photography',
     description: 'Cinematic, archival documentation of your celebration, capturing unscripted moments with editorial elegance.',
-    image: '/images/_DSC8508.jpg',
+    image: '/images/_DSC8508.webp',
   },
   {
     id: '02',
     title: 'Wedding Films',
     description: 'Moving portraits that preserve the atmosphere, sound, and raw emotion of your most important days.',
-    image: '/images/_PR09779.jpg',
+    image: '/images/_PR09779.webp',
   },
   {
     id: '03',
     title: 'Pre-Wedding',
     description: 'Intimate, art-directed sessions designed to document your connection before the grand event.',
-    image: '/images/_PR09941.jpg',
+    image: '/images/_PR09941.webp',
   },
   {
     id: '04',
     title: 'Destination',
     description: 'World-class coverage wherever your story takes us, seamlessly adapting to any environment or culture.',
-    image: '/images/_VEE1074.jpg',
+    image: '/images/_VEE1074.webp',
   },
 ];
 

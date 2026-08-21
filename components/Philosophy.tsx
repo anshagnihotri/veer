@@ -110,7 +110,7 @@ export default function Philosophy() {
           {/* Main Large Image */}
           <div className="absolute right-0 md:right-10 top-1/2 -translate-y-1/2 w-[70%] md:w-[65%] aspect-[3/4] overflow-hidden z-10">
             <Image
-              src="/images/054A4027.jpg"
+              src="/images/054A4027.webp"
               alt="Veer Philosophy Main"
               fill
               sizes="(max-width: 768px) 70vw, 35vw"
@@ -121,7 +121,7 @@ export default function Philosophy() {
           {/* Secondary Overlapping Image */}
           <div className="absolute left-0 md:left-10 bottom-10 w-[50%] md:w-[45%] aspect-[4/5] overflow-hidden z-20 border-4 border-black">
             <Image
-              src="/images/_XYZ1112.jpg"
+              src="/images/_XYZ1112.webp"
               alt="Veer Philosophy Detail"
               fill
               sizes="(max-width: 768px) 50vw, 25vw"

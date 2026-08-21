@@ -12,14 +12,14 @@ const testimonials: Testimonial[] = [
     quote: "Watching our film felt like reliving the magic all over again. Veer didn't just capture how the day looked, but exactly how it felt. Every frame is poetry.",
     couple: "MEERA & ADITYA",
     location: "UDAIPUR",
-    image: "/images/_XYZ1051.jpg",
+    image: "/images/_XYZ1051.webp",
   },
   {
     id: "2",
     quote: "We were worried about feeling awkward on camera, but his presence was so calming. The final result is a masterpiece that our family will treasure for generations.",
     couple: "SOPHIA & LIAM",
     location: "LAKE COMO",
-    image: "/images/_XYZ1086.jpg",
+    image: "/images/_XYZ1086.webp",
   },
 ];
 

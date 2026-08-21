@@ -8,15 +8,15 @@ const alphabet = ['All', ...Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ')];
 
 // Mixed aspect ratios to create the masonry effect
 const worksData = [
-  { id: 1, couple: 'Ananya & Arjun', category: 'Wedding', year: '2026', image: '/images/_PR09941.jpg' },
-  { id: 2, couple: 'Priya & Rahul', category: 'Editorial', year: '2026', image: '/images/_VEE1074.jpg' },
-  { id: 3, couple: 'Sneha & Vikram', category: 'Documentary', year: '2027', image: '/images/_XYZ1051.jpg' },
-  { id: 4, couple: 'Meera & Aditya', category: 'Wedding', year: '2025', image: '/images/_XYZ1086.jpg' },
-  { id: 5, couple: 'Ishita & Rohan', category: 'Pre-Wedding', year: '2026', image: '/images/_XYZ1112.jpg' },
-  { id: 6, couple: 'Tara & Kabir', category: 'Film', year: '2027', image: '/images/_XYZ1252.jpg' },
-  { id: 7, couple: 'Kavya & Dev', category: 'Editorial', year: '2025', image: '/images/001 (69).jpg' },
-  { id: 8, couple: 'Neha & Sahil', category: 'Wedding', year: '2026', image: '/images/054A3733.jpg' },
-  { id: 9, couple: 'Riya & Aman', category: 'Documentary', year: '2026', image: '/images/054A3911.jpg' },
+  { id: 1, couple: 'Ananya & Arjun', category: 'Wedding', year: '2026', image: '/images/_PR09941.webp' },
+  { id: 2, couple: 'Priya & Rahul', category: 'Editorial', year: '2026', image: '/images/_VEE1074.webp' },
+  { id: 3, couple: 'Sneha & Vikram', category: 'Documentary', year: '2027', image: '/images/_XYZ1051.webp' },
+  { id: 4, couple: 'Meera & Aditya', category: 'Wedding', year: '2025', image: '/images/_XYZ1086.webp' },
+  { id: 5, couple: 'Ishita & Rohan', category: 'Pre-Wedding', year: '2026', image: '/images/_XYZ1112.webp' },
+  { id: 6, couple: 'Tara & Kabir', category: 'Film', year: '2027', image: '/images/_XYZ1252.webp' },
+  { id: 7, couple: 'Kavya & Dev', category: 'Editorial', year: '2025', image: '/images/001 (69).webp' },
+  { id: 8, couple: 'Neha & Sahil', category: 'Wedding', year: '2026', image: '/images/054A3733.webp' },
+  { id: 9, couple: 'Riya & Aman', category: 'Documentary', year: '2026', image: '/images/054A3911.webp' },
 ];
 
 export default function OurWorks() {

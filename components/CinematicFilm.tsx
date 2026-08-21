@@ -18,7 +18,7 @@ export default function CinematicFilm() {
   const [isMuted, setIsMuted] = useState(false);
 
   const openModal = () => {
-    setActiveVideo("/videos/FINAL%20TEASER.MP4");
+    setActiveVideo("/images/_XYZ1051.webp");
     setIsVideoPlaying(true);
     setIsMuted(false);
     document.body.style.overflow = "hidden";
@@ -46,19 +46,19 @@ export default function CinematicFilm() {
   };
 
   const togglePlay = () => {
-    if (videoRef.current) {
+    if (videoRef.current && (videoRef.current as any).play) {
       if (isVideoPlaying) {
-        videoRef.current.pause();
+        (videoRef.current as any).pause();
       } else {
-        videoRef.current.play();
+        (videoRef.current as any).play();
       }
       setIsVideoPlaying(!isVideoPlaying);
     }
   };
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
+    if (videoRef.current && (videoRef.current as any).muted !== undefined) {
+      (videoRef.current as any).muted = !isMuted;
       setIsMuted(!isMuted);
     }
   };
@@ -87,15 +87,12 @@ export default function CinematicFilm() {
 
   return (
     <>
-      <section ref={containerRef} className="relative w-full h-[80vh] md:h-screen overflow-hidden group cursor-pointer" onClick={openModal}>
+      <section ref={containerRef} className="relative w-full h-[80vh] md:h-[100dvh] overflow-hidden group cursor-pointer" onClick={openModal}>
         <div className="absolute inset-0 z-0 cinema-bg">
-          <video
-            src="/videos/03%20Reel.MP4"
-            autoPlay
-            loop
-            muted
-            playsInline
+          <img
+            src="/images/_XYZ1112.webp"
             className="w-full h-full object-cover opacity-80"
+            alt="Cinematic background"
           />
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
         </div>
@@ -137,13 +134,10 @@ export default function CinematicFilm() {
 
             {/* Video Player */}
             <div className="relative w-full h-full max-h-screen">
-              <video
-                ref={videoRef}
+              <img
                 src={activeVideo}
-                autoPlay
-                playsInline
-                className="w-full h-full object-cover"
-                onEnded={() => setIsVideoPlaying(false)}
+                className="w-full h-full object-contain"
+                alt="Cinematic film"
               />
               
               {/* Custom Controls Overlay */}

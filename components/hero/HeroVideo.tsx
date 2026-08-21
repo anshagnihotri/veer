@@ -2,18 +2,11 @@ export default function HeroVideo() {
   return (
     <div className="absolute inset-0 z-0 h-full w-full bg-[espresso]">
       <div className="gsap-video absolute inset-0 h-full w-full origin-center opacity-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
+        <img
+          src="/images/_XYZ1252.webp"
           className="h-full w-full object-cover object-center"
-          poster="/images/hero-poster.jpg"
-        >
-          {/* Replace with actual wedding footage */}
-          <source src="/videos/veer-wedding-hero.mp4" type="video/mp4" />
-        </video>
+          alt="Hero background"
+        />
       </div>
 
       {/* Subtle Cinematic Overlay */}

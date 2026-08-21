@@ -37,16 +37,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={containerRef} id="home" className="relative w-full h-screen overflow-hidden bg-black flex flex-col justify-between">
+    <section ref={containerRef} id="home" className="relative w-full h-[100dvh] overflow-hidden bg-black flex flex-col justify-between">
       {/* Background Media */}
       <div className="absolute inset-0 z-0 hero-bg">
-        <video
-          src="/videos/02%20Reel.MP4"
-          autoPlay
-          loop
-          muted
-          playsInline
+        <img
+          src="/images/_XYZ1112.webp"
           className="w-full h-full object-cover opacity-80"
+          alt="Hero background"
         />
         <div className="absolute inset-0 bg-black/10" />
       </div>

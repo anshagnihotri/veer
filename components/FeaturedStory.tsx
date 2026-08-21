@@ -18,7 +18,7 @@ export default function FeaturedStory() {
   const [isMuted, setIsMuted] = useState(false);
 
   const openModal = () => {
-    setActiveVideo("/videos/Angad%20Highlight.mp4");
+    setActiveVideo("/images/_XYZ1252.webp");
     setIsVideoPlaying(true);
     setIsMuted(false);
     document.body.style.overflow = "hidden";
@@ -46,19 +46,19 @@ export default function FeaturedStory() {
   };
 
   const togglePlay = () => {
-    if (videoRef.current) {
+    if (videoRef.current && (videoRef.current as any).play) {
       if (isVideoPlaying) {
-        videoRef.current.pause();
+        (videoRef.current as any).pause();
       } else {
-        videoRef.current.play();
+        (videoRef.current as any).play();
       }
       setIsVideoPlaying(!isVideoPlaying);
     }
   };
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
+    if (videoRef.current && (videoRef.current as any).muted !== undefined) {
+      (videoRef.current as any).muted = !isMuted;
       setIsMuted(!isMuted);
     }
   };
@@ -121,13 +121,10 @@ export default function FeaturedStory() {
         >
           <div className="absolute inset-0 z-10 bg-black/20 transition-colors duration-500 group-hover:bg-black/40" />
           
-          <video
-            src="/videos/Angad%20Highlight.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
+          <img
+            src="/images/_XYZ1252.webp"
             className="featured-img w-full h-full object-cover"
+            alt="Featured story background"
           />
 
           <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform scale-90 group-hover:scale-100">
@@ -177,13 +174,10 @@ export default function FeaturedStory() {
 
             {/* Video Player */}
             <div className="relative w-full h-full max-h-screen">
-              <video
-                ref={videoRef}
+              <img
                 src={activeVideo}
-                autoPlay
-                playsInline
-                className="w-full h-full object-cover"
-                onEnded={() => setIsVideoPlaying(false)}
+                className="w-full h-full object-contain"
+                alt="Featured story film"
               />
               
               {/* Custom Controls Overlay */}

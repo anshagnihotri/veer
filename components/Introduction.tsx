@@ -37,7 +37,7 @@ export default function Introduction() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 md:py-48 px-6 bg-black min-h-screen flex items-center justify-center bg-grain-dark relative">
+    <section ref={containerRef} className="py-32 md:py-48 px-6 bg-black min-h-[100dvh] flex items-center justify-center bg-grain-dark relative">
       <div className="max-w-6xl mx-auto text-center space-y-4 md:space-y-8">
         <h2 className="intro-line text-4xl md:text-7xl lg:text-8xl font-serif text-ivory tracking-tight leading-[1.1]">
           WE DON&apos;T JUST

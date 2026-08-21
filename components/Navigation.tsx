@@ -115,16 +115,13 @@ export default function Navigation() {
       >
         {/* Background Media */}
         <div className="absolute inset-0 z-0">
-          <video
-            src="/videos/02%20Reel.MP4"
-            autoPlay
-            loop
-            muted
-            playsInline
+          <img
+            src="/images/_PR09941.webp"
             className="menu-media w-full h-full object-cover hidden md:block"
+            alt="Menu background video replacement"
           />
           <img
-            src="/images/DSC01369.jpg"
+            src="/images/DSC01369.webp"
             className="menu-media w-full h-full object-cover md:hidden"
             alt="Menu background"
           />

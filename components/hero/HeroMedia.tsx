@@ -10,7 +10,7 @@ export default function HeroMedia() {
       <div className="gsap-media-1 absolute inset-0 h-full w-full origin-center opacity-0">
         <div className="gsap-media-inner h-full w-full scale-[1.04]">
           <img
-            src="/images/333.jpg"
+            src="/images/333.webp"
             alt="Cinematic memory 1"
             className="h-full w-full object-cover"
           />
@@ -23,7 +23,7 @@ export default function HeroMedia() {
       <div className="gsap-media-2 absolute inset-0 h-full w-full origin-center opacity-0">
         <div className="gsap-media-inner h-full w-full scale-[1.04]">
           <img
-            src="/images/Anjali.jpg.jpg"
+            src="/images/Anjali.webp"
             alt="Cinematic memory 2"
             className="h-full w-full object-cover"
           />
@@ -36,7 +36,7 @@ export default function HeroMedia() {
       <div className="gsap-media-3 absolute inset-0 h-full w-full origin-center opacity-0">
         <div className="gsap-media-inner h-full w-full scale-[1.04]">
           <img
-            src="/images/DSC01369.jpg"
+            src="/images/DSC01369.webp"
             alt="Cinematic memory 3"
             className="h-full w-full object-cover"
           />

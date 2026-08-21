@@ -16,32 +16,32 @@ const films = [
     couple: "AKASH & TANUSHREE",
     location: "UDAIPUR",
     year: "2024",
-    image: "/images/1.jpg",
-    video: "/videos/Akash%20&%20Tanushree%20Wedding%20Teaser%20Vertical.mov",
+    image: "/images/1.webp",
+    video: "/images/054A3733.webp",
   },
   {
     id: "2",
     couple: "AYUSH & AKSHITA",
     location: "LAKE COMO",
     year: "2024",
-    image: "/images/111.jpg",
-    video: "/videos/Ayush%20&%20Akshita%20Engagement%20Reel.mov",
+    image: "/images/111_converted.webp",
+    video: "/images/001 (69).webp",
   },
   {
     id: "3",
     couple: "DIKSHANT & BANDHUTA",
     location: "DUBAI",
     year: "2024",
-    image: "/images/2.jpg",
-    video: "/videos/Dikshant%20&%20Bandhuta%20Teaser.mp4",
+    image: "/images/2.webp",
+    video: "/images/054A4027.webp",
   },
   {
     id: "4",
     couple: "HARSHAL & KRITIKA",
     location: "GOA",
     year: "2024",
-    image: "/images/333.jpg",
-    video: "/videos/Harshal%20X%20Kritika%20Highlight.mp4",
+    image: "/images/333.webp",
+    video: "/images/_XYZ1252.webp",
   },
 ];
 
@@ -109,19 +109,19 @@ export default function SelectedFilms() {
   };
 
   const togglePlay = () => {
-    if (videoRef.current) {
+    if (videoRef.current && (videoRef.current as any).play) {
       if (isPlaying) {
-        videoRef.current.pause();
+        (videoRef.current as any).pause();
       } else {
-        videoRef.current.play();
+        (videoRef.current as any).play();
       }
       setIsPlaying(!isPlaying);
     }
   };
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
+    if (videoRef.current && (videoRef.current as any).muted !== undefined) {
+      (videoRef.current as any).muted = !isMuted;
       setIsMuted(!isMuted);
     }
   };
@@ -137,7 +137,7 @@ export default function SelectedFilms() {
         {/* Horizontal Scroll Container */}
         <div 
           ref={scrollWrapperRef}
-          className="flex md:flex-row flex-col gap-8 md:gap-16 px-6 md:px-12 w-[100vw] md:w-[400vw] relative -translate-y-2.5"
+          className="flex md:flex-row flex-col gap-8 md:gap-16 px-6 md:px-12 w-full md:w-[400vw] relative -translate-y-2.5"
         >
           {films.map((film) => (
             <div 
@@ -222,13 +222,10 @@ export default function SelectedFilms() {
 
             {/* Video Player */}
             <div className="relative w-full h-full max-h-screen">
-              <video
-                ref={videoRef}
+              <img
                 src={activeFilm.video}
-                autoPlay
-                playsInline
-                className="w-full h-full object-cover"
-                onEnded={() => setIsPlaying(false)}
+                className="w-full h-full object-contain"
+                alt={activeFilm.couple}
               />
               
               {/* Custom Controls Overlay */}
